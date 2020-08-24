@@ -38,6 +38,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Moving build to artifacts directory
+      run: ./gradlew getRuntime
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
