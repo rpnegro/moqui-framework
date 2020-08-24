@@ -41,22 +41,25 @@ jobs:
     - name: Get the default runtime directory
       run: ./gradlew getRuntime
 
+    - name: Create directory elasticsearch
+      run: mkdir -p runtime/elasticsearch/  
+
     - name: Build Moqui and create the moqui-plus-runtime.war file
       run: ./gradlew addRuntime
 
     - name: Build a local Docker image using the default name moqui
       run: cd docker/simple; ./docker-build.sh
 
-#    - name: Configure AWS credentials
-#      uses: aws-actions/configure-aws-credentials@v1
-#      with:
-#        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#        aws-region: us-east-2
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
 
-#    - name: Login to Amazon ECR
-#      id: login-ecr
-#      uses: aws-actions/amazon-ecr-login@v1
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
