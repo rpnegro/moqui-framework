@@ -48,7 +48,7 @@ jobs:
       run: ./gradlew addRuntime
 
     - name: Build a local Docker image using the default name moqui
-      run: cd docker/simple; ./docker-build.sh
+      run: 
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -71,7 +71,8 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        cd docker/simple
+        ./docker-build.sh $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
