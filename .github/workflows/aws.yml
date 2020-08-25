@@ -48,6 +48,8 @@ jobs:
       run: |
         mkdir -p runtime/lib
         cp mysql-connector-java-5.1.49.jar runtime/lib/
+        ls .
+        ls runtime/
         ls runtime/lib
     
     - name: Build Moqui and create the moqui-plus-runtime.war file
