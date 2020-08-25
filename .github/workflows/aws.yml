@@ -42,8 +42,14 @@ jobs:
       run: ./gradlew getRuntime
 
     - name: Create directory elasticsearch
-      run: mkdir -p runtime/elasticsearch/  
+      run: mkdir -p runtime/elasticsearch/
 
+    - name: Include Mysql connector
+      run: |
+        mkdir -p runtime/lib
+        cp mysql-connector-java-5.1.49 runtime/lib/
+        ls runtime/lib
+    
     - name: Build Moqui and create the moqui-plus-runtime.war file
       run: ./gradlew addRuntime
 
