@@ -41,11 +41,12 @@ jobs:
     - name: Get the default runtime directory
       run: ./gradlew getRuntime
 
-    - name: Create directory elasticsearch
+    - name: Create directory elasticsearch and conf
       run: |
         ls .
         echo "root directory"
         mkdir -p runtime/elasticsearch/
+        mkdir -p runtime/conf
 
     - name: Include Mysql connector
       run: |
