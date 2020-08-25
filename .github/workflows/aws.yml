@@ -104,4 +104,3 @@ jobs:
         service: moqui-app-service
         cluster: moqui-cluster
         wait-for-service-stability: true
-        
